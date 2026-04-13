@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 from pathlib import Path
 
+from data_utils import missing_data_message
 st.set_page_config(page_title="Appreciation History", layout="wide")
 st.title("Historical Appreciation (Zillow ZHVI)")
 st.caption("Zillow Home Value Index — Condo/Co-op by neighborhood, 2000–2026")

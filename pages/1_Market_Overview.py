@@ -5,9 +5,26 @@ import plotly.graph_objects as go
 import plotly.express as px
 import json
 from pathlib import Path
+from data_utils import missing_data_message
 
 st.set_page_config(page_title="Market Overview", layout="wide")
 st.title("Market Overview")
+
+from pathlib import Path
+MARKET = st.session_state.get("MARKET", "DC Metro")
+BASE = Path(__file__).resolve().parent.parent.parent
+DATA_DC = BASE / "data" / "dc"
+DATA_NAT = BASE / "data" / "national"
+
+if MARKET == "DC Metro":
+    required_file = DATA_DC / "dc_arl_alex.tsv"
+else:
+    required_file = DATA_NAT / "new_metros.tsv"
+
+if not required_file.exists():
+    missing_data_message(st.title.__self__.__dict__.get('_title', 'This page'))
+    st.stop()
+
 st.caption("Redfin market data — DC / Arlington / Alexandria")
 
 st.info(

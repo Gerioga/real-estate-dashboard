@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 from pathlib import Path
 
+from data_utils import missing_data_message
 st.set_page_config(page_title="Price Trends", layout="wide")
 st.title("Price Trends")
 st.caption("Redfin time-series data — median price, $/sqft, days on market")

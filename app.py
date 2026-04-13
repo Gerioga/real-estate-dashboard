@@ -90,6 +90,32 @@ with col3:
 
 st.markdown("---")
 
+# ── Data Status Check ──
+from pathlib import Path
+BASE_PATH = Path(__file__).resolve().parent.parent
+data_path = BASE_PATH / "Real estate dashboard" / "data"
+
+# Check if data files exist
+dc_data_exists = (data_path / "dc" / "dc_arl_alex.tsv").exists()
+miami_data_exists = (data_path / "miami" / "miami_zcta.geojson").exists() or (data_path / "national" / "new_metros.tsv").exists()
+
+if not dc_data_exists or not miami_data_exists:
+    st.warning(
+        """
+        ⚠️ **Data files not found**
+
+        This app requires data files that are not included in the GitHub repository (too large).
+
+        **To fix:**
+        1. **Local development**: Copy `data/` folder from the source directory
+        2. **Streamlit Cloud**: See [DATA_SETUP.md](DATA_SETUP.md) for GitHub LFS setup
+
+        For now, you can still use the **Investment Calculator** page to test yield calculations!
+        """
+    )
+
+st.markdown("---")
+
 # ── Market-specific info ──
 if market == "DC Metro":
     st.markdown("### Market Info (DC Metro)")

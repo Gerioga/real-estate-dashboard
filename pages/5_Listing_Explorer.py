@@ -16,10 +16,23 @@ st.info(
     "Yield metrics range from quick gross yield to a full after-tax model with depreciation, debt service, and appreciation."
 )
 
+from data_utils import missing_data_message, safe_load_csv
+
 BASE = Path(__file__).resolve().parent.parent.parent
 UNIT_DIR = BASE / "output" / "Unit Data"
 DATA_DC = BASE / "data" / "dc"
 DATA_NAT = BASE / "data" / "national"
+
+# Check if data exists
+MARKET = st.session_state.get("MARKET", "DC Metro")
+if MARKET == "DC Metro":
+    data_path = DATA_DC / "dc_arl_alex.tsv"
+else:
+    data_path = DATA_NAT / "new_metros.tsv"
+
+if not data_path.exists():
+    missing_data_message("Listing Explorer")
+    st.stop()
 
 AREA_COLORS = {
     "NW DC": "#0071BC", "Arlington": "#2E7D32",

@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 from pathlib import Path
 
+from data_utils import missing_data_message
 st.set_page_config(page_title="Yield Analysis", layout="wide")
 st.title("Investment Yield Analysis")
 st.caption("Yield estimates based on Redfin median prices & HUD FMR 2025 rents")
