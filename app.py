@@ -1,6 +1,10 @@
 import streamlit as st
 from pathlib import Path
 from market_config import get_market_config, list_markets, zip_jurisdiction_dc, zip_jurisdiction_miami
+from download_data import ensure_data_available
+
+# Auto-download data files if needed (Streamlit Cloud)
+ensure_data_available()
 
 # ── Data directory (relative to project root) ──
 BASE = Path(__file__).resolve().parent.parent
