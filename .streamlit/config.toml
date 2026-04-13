@@ -1,0 +1,36 @@
+# Streamlit Configuration
+# For local development and cloud deployment
+
+[theme]
+primaryColor = "#002245"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F0F2F6"
+textColor = "#31333D"
+font = "sans serif"
+
+[client]
+showErrorDetails = true
+toolbarMode = "minimal"
+
+[logger]
+level = "error"
+
+[server]
+headless = true
+port = 8501
+runOnSave = true
+maxUploadSize = 200
+
+[browser]
+gatherUsageStats = false
+serverAddress = "localhost"
+
+# ── Deployment-specific ──
+[client.showErrorDetails]
+# Hide detailed errors in production
+# Streamlit Cloud automatically disables this for security
+
+[cache]
+# Cache optimization for better performance
+maxEntries = 1000
+expireAfterMinutes = 60
